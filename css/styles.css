@@ -278,14 +278,15 @@ ol {
   object-position: center;
   background: #050505;
   pointer-events: none;
+  filter: brightness(0.34) saturate(0.8) contrast(1.08);
 }
 
 .hero__veil {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    linear-gradient(180deg, rgba(5, 5, 5, 0.55) 0%, rgba(5, 5, 5, 0.12) 28%, rgba(5, 5, 5, 0.08) 52%, rgba(5, 5, 5, 0.72) 100%),
-    radial-gradient(ellipse at 50% 40%, transparent 40%, rgba(5, 5, 5, 0.35) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0.68) 38%, rgba(0, 0, 0, 0.72) 62%, rgba(0, 0, 0, 0.9) 100%);
   pointer-events: none;
 }
 
@@ -293,27 +294,55 @@ ol {
   z-index: 2;
 }
 
-.hero__veil {
-  z-index: 2;
-}
-
-.slide--hero .cover__title,
-.slide--hero .cover__label,
-.slide--hero .cover__foot strong {
-  text-shadow: 0 10px 36px rgba(0, 0, 0, 0.7);
-}
-
-.slide--hero .gold-rule {
-  background: var(--gold);
-  box-shadow: 0 0 18px rgba(196, 163, 90, 0.45);
+.cover__panel {
+  width: min(920px, 100%);
+  padding: 40px 44px 36px;
+  background: rgba(4, 4, 4, 0.72);
+  border: 1px solid rgba(237, 215, 160, 0.32);
 }
 
 .slide--hero .kicker {
-  color: var(--gold-2);
+  font-size: 12px;
+  letter-spacing: 0.42em;
 }
 
+.slide--hero .cover__title {
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 62px);
+}
+
+.slide--hero .cover__title em {
+  color: #f3dc96;
+}
+
+.slide--hero .kicker,
+.slide--hero .cover__label {
+  color: #f3dc96;
+}
+
+.slide--hero .cover__foot span,
 .slide--hero .cover__hint {
-  color: rgba(243, 238, 228, 0.7);
+  color: #f3dc96;
+}
+
+.slide--hero .cover__foot strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.slide--hero .gold-rule {
+  background: #f3dc96;
+}
+
+.nav {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.nav__brand,
+.nav__counter,
+.nav__mark {
+  color: #f3dc96;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1088,6 +1117,10 @@ ol {
     padding: 88px 22px 36px;
     justify-content: flex-start;
     overflow: auto;
+  }
+
+  .cover__panel {
+    padding: 24px 18px 20px;
   }
 
   .split,
