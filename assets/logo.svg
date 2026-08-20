@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" fill="none" role="img" aria-labelledby="tsukiTitle">
+  <title id="tsukiTitle">Tsuki Restaurante Japonês</title>
+  <circle cx="140" cy="140" r="136" stroke="#C4A35A" stroke-width="1.5"/>
+  <circle cx="140" cy="140" r="128" fill="#080808"/>
+  <!-- Moon / sushi mark -->
+  <circle cx="140" cy="62" r="22" fill="#C41E3A"/>
+  <path d="M128 62a18 18 0 0 0 24 0 18 18 0 0 1-24 0Z" fill="#E8D5A3"/>
+  <path d="M122 62a18 18 0 1 0 36 0" stroke="#F4EFE6" stroke-width="1.4" fill="none"/>
+  <text x="140" y="128" text-anchor="middle" fill="#F4EFE6" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="600" letter-spacing="10">TSUKI</text>
+  <line x1="72" y1="148" x2="208" y2="148" stroke="#C4A35A" stroke-width="0.6"/>
+  <text x="140" y="172" text-anchor="middle" fill="#C4A35A" font-family="Arial, sans-serif" font-size="9" letter-spacing="4.5">RESTAURANTE JAPONÊS</text>
+</svg>
