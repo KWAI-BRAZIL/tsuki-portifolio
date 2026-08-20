@@ -355,6 +355,7 @@ ol {
   position: relative;
   z-index: 1;
   height: 100%;
+  min-height: 0;
   padding: 100px 72px 56px;
   display: flex;
   flex-direction: column;
@@ -362,6 +363,9 @@ ol {
   max-width: 1280px;
   margin: 0 auto;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   scrollbar-width: thin;
   scrollbar-color: var(--gold) transparent;
 }
@@ -1105,18 +1109,51 @@ ol {
   }
 
   .nav__progress {
-    display: none;
+    width: min(120px, 30vw);
   }
 
-  .dots,
   .frame {
     display: none;
   }
 
+  .dots {
+    display: flex;
+    flex-direction: row;
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 16px;
+    transform: translateX(-50%);
+    gap: 9px;
+    z-index: 80;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .dots__item {
+    width: 9px;
+    height: 9px;
+  }
+
+  .slide,
   .slide__inner {
-    padding: 88px 22px 36px;
+    height: 100dvh;
+  }
+
+  .slide__inner {
+    padding: 88px 22px 56px;
     justify-content: flex-start;
-    overflow: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  .slide__inner > * {
+    flex-shrink: 0;
+  }
+
+  .cover__hint {
+    bottom: 52px;
   }
 
   .cover__panel {

@@ -16,9 +16,9 @@
   const atEdge = (inner, dir) => {
     if (!inner) return true;
     const max = inner.scrollHeight - inner.clientHeight;
-    if (max <= 4) return true;
-    if (dir > 0) return inner.scrollTop >= max - 1;
-    return inner.scrollTop <= 1;
+    if (max <= 24) return true;
+    if (dir > 0) return inner.scrollTop >= max - 8;
+    return inner.scrollTop <= 8;
   };
 
   const go = (next) => {
@@ -80,7 +80,7 @@
 
       if (inner) {
         const max = Math.max(0, inner.scrollHeight - inner.clientHeight);
-        if (max > 4 && !atEdge(inner, dir)) {
+        if (max > 24 && !atEdge(inner, dir)) {
           inner.scrollTop += dy;
           quietUntil = now + 480;
           return;
@@ -129,22 +129,20 @@
   });
 
   let touchY = 0;
-  let touchScroll = 0;
   window.addEventListener(
     "touchstart",
     (e) => {
       touchY = e.changedTouches[0].clientY;
-      touchScroll = innerOf(slides[index])?.scrollTop || 0;
     },
     { passive: true }
   );
   window.addEventListener(
     "touchend",
     (e) => {
+      if (locked) return;
       const inner = innerOf(slides[index]);
       const dy = touchY - e.changedTouches[0].clientY;
-      if (Math.abs(dy) < 56) return;
-      if (inner && Math.abs((inner.scrollTop || 0) - touchScroll) > 10) return;
+      if (Math.abs(dy) < 48) return;
       const dir = dy > 0 ? 1 : -1;
       if (inner && !atEdge(inner, dir)) return;
       if (performance.now() < quietUntil) return;
