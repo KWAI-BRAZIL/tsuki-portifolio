@@ -2,14 +2,12 @@
   const slides = [...document.querySelectorAll(".slide")];
   const dots = [...document.querySelectorAll(".dots__item")];
   const bar = document.querySelector(".nav__bar");
-  const counter = document.querySelector(".nav__counter em");
   const fsBtn = document.querySelector(".nav__fs");
   const total = slides.length;
   let index = 0;
   let locked = false;
   const ids = slides.map((s) => s.id);
 
-  const pad = (n) => String(n).padStart(2, "0");
   const innerOf = (el) => el?.querySelector(".slide__inner");
   let quietUntil = 0;
 
@@ -37,8 +35,7 @@
 
     index = to;
     dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
-    bar.style.width = `${((index + 1) / total) * 100}%`;
-    counter.textContent = pad(index + 1);
+    if (bar) bar.style.width = `${((index + 1) / total) * 100}%`;
     history.replaceState(null, "", `#${ids[index]}`);
     if (to === 0) playHero();
     else if (heroVideo && !heroVideo.paused) heroVideo.pause();
@@ -58,8 +55,7 @@
       index = found;
       slides[index].classList.add("is-active");
       dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
-      bar.style.width = `${((index + 1) / total) * 100}%`;
-      counter.textContent = pad(index + 1);
+      if (bar) bar.style.width = `${((index + 1) / total) * 100}%`;
     }
   };
 

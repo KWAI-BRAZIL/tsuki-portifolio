@@ -161,14 +161,6 @@ ol {
   gap: 16px;
 }
 
-.nav__counter em {
-  font-style: normal;
-  color: var(--gold);
-  font-family: var(--serif);
-  font-size: 18px;
-  letter-spacing: 0.08em;
-}
-
 .nav__fs {
   width: 28px;
   height: 28px;
@@ -340,7 +332,6 @@ ol {
 }
 
 .nav__brand,
-.nav__counter,
 .nav__mark {
   color: #f3dc96;
 }
