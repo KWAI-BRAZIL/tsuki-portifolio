@@ -121,28 +121,40 @@
   const hero = document.querySelector(".hero");
   const heroVideo = document.querySelector(".hero__video");
 
+  const videoSrc = () => {
+    const path = window.location.pathname;
+    const dir = path.endsWith("/") || path.endsWith(".html")
+      ? path.replace(/[^/]+$/, "")
+      : `${path}/`;
+    return `${dir}assets/tsuki-capa.mp4`;
+  };
+
+  const tryPlay = () => {
+    if (!heroVideo) return Promise.resolve();
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.playsInline = true;
+    const play = heroVideo.play();
+    return play ? play.catch(() => {}) : Promise.resolve();
+  };
+
   const playHero = () => {
-    if (!hero) return;
-    hero.classList.remove("is-playing");
-    void hero.offsetWidth;
-    hero.classList.add("is-playing");
-    if (hero.classList.contains("has-video")) {
-      heroVideo?.play().catch(() => {});
-    }
+    if (index === 0) tryPlay();
   };
 
   if (heroVideo) {
-    const onReady = () => {
-      hero?.classList.add("has-video");
-      if (index === 0) heroVideo.play().catch(() => {});
-    };
-    heroVideo.addEventListener("loadeddata", onReady);
-    heroVideo.addEventListener("error", () => {
-      hero?.classList.remove("has-video");
+    heroVideo.setAttribute("playsinline", "");
+    heroVideo.setAttribute("webkit-playsinline", "");
+    heroVideo.src = videoSrc();
+    heroVideo.load();
+    ["loadeddata", "canplay", "canplaythrough"].forEach((ev) => {
+      heroVideo.addEventListener(ev, () => {
+        if (index === 0) tryPlay();
+      });
     });
-    heroVideo.querySelector("source")?.addEventListener("error", () => {
-      hero?.classList.remove("has-video");
-    });
+    const unlock = () => tryPlay();
+    window.addEventListener("touchstart", unlock, { passive: true });
+    window.addEventListener("pointerdown", unlock, { passive: true });
   }
 
   playHero();
